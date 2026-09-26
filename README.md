@@ -65,16 +65,47 @@ pio run -t upload
 ```
 
 `platformio.ini` pins a newer ARM toolchain (GCC 12.3) because the platform
-default is x86_64 only and fails on Apple Silicon Macs without Rosetta.
+default is x86_64 only and fails on Apple Silicon Macs without Rosetta. For
+uploading on such a Mac, see the UF2 method below.
 
 > PlatformIO's `.ino` preprocessing fails if the project path contains spaces.
 > Clone into a path without spaces.
+
+### Flashing via UF2 (Apple Silicon without Rosetta)
+
+PlatformIO's upload tool `bossac` is x86_64 only as well, so on an Apple
+Silicon Mac without Rosetta `pio run -t upload` fails with
+`Bad CPU type in executable`. The XIAO's bootloader can also be flashed by
+copying a `.uf2` file onto the USB drive it shows up as, which needs no
+upload tool at all:
+
+1. Build the firmware:
+
+   ```bash
+   pio run
+   ```
+
+2. Put the XIAO into bootloader mode: double-tap the RST pads (see below).
+   A drive named **Arduino** appears.
+3. Convert and copy in one go:
+
+   ```bash
+   python3 tools/bin2uf2.py --flash
+   ```
+
+   The drive disappears and the XIAO restarts with the new firmware.
+
+[`tools/bin2uf2.py`](tools/bin2uf2.py) only needs Python 3. Without
+`--flash` it just writes `.pio/build/seeed_xiao/firmware.uf2`, which you can
+drag onto the drive yourself. If the drive is mounted somewhere else, pass
+its path: `--flash /path/to/Arduino`.
 
 ### If the XIAO does not show up for upload
 
 Double-tap the reset: briefly short the two **RST** pads next to the USB
 connector twice in quick succession. The orange LED pulses and the XIAO
-appears as a USB drive / bootloader port. Upload again.
+appears as a USB drive (**Arduino**) and a bootloader port. Upload again,
+or use the UF2 method above.
 
 ## Usage
 
