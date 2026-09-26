@@ -93,6 +93,17 @@ affected.
 - Avoid the XIAO's back-side pads (battery, SWD) unless you know what you are
   doing.
 
+## Example build
+
+A compact build without an enclosure: a small 3.5 mm jack mounted on the back
+of the XIAO, in line with the USB‑C connector, three short wires to D1, D2
+and GND, and the whole thing wrapped in clear heat-shrink tubing. The tubing
+keeps the LEDs visible.
+
+![Finished adapter, top side](images/adapter-top.jpg)
+
+![Finished adapter, jack side](images/adapter-jack-side.jpg)
+
 ## Enclosure tips
 
 - Glue or screw the jack to the enclosure so that plugging in does not stress

@@ -20,6 +20,14 @@ This is the same key mapping as the commercial
   Morse trainer; connect via USB‑C/OTG and use *Settings → Learn Paddle Keys*.
 - Any other software that reads dit/dah as two keyboard keys.
 
+| Top side | Jack side |
+|---|---|
+| ![Finished adapter, top side: USB-C cable on the left, paddle cable plugged in on the right](docs/images/adapter-top.jpg) | ![Finished adapter, back side: 3.5 mm jack mounted directly on the back of the XIAO](docs/images/adapter-jack-side.jpg) |
+
+The finished adapter: a 3.5 mm jack mounted on the back of the XIAO, wired
+with short wires and wrapped in clear heat-shrink tubing. USB‑C on one end,
+paddle on the other.
+
 The adapter only reports *contact state*. Keyer logic (iambic A/B, ultimatic,
 bug, straight key, speed) runs in the application, just like with the original
 vband adapter.
