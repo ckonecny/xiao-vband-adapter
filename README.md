@@ -146,6 +146,8 @@ Click into the page once so the browser tab has keyboard focus.
 
 Connect the XIAO directly with a USB‑C ↔ USB‑C cable (or USB‑A cable + OTG
 adapter). Open *Settings → Learn Paddle Keys* and press dit, then dah.
+On Samsung phones, switch off *Auto Blocker* first, otherwise the adapter
+is ignored (see [Troubleshooting](#troubleshooting)).
 
 ## Checking it works without any app
 
@@ -153,6 +155,27 @@ Open a keyboard event viewer, e.g.
 <https://w3c.github.io/uievents/tools/key-event-viewer.html>, and press the
 paddles. You should see `keydown`/`keyup` with `code` = `ControlLeft` for dit
 and `ControlRight` for dah.
+
+## Troubleshooting
+
+### The LED reacts to the paddle, but the phone does nothing
+
+The LED only proves that the adapter is powered and sees the paddle. If the
+host ignores it, check the phone:
+
+- **Samsung Galaxy: turn off Auto Blocker.** One UI's *Auto Blocker* option
+  *Block commands and software updates by USB cable* also blocks USB
+  keyboards. The adapter is powered (LED works), but the phone never accepts
+  it as a keyboard. Go to *Settings → Security and privacy → Auto Blocker*
+  and switch that option (or Auto Blocker as a whole) off, then replug the
+  adapter. Confirmed on a Galaxy S25+. Other vendors may have similar
+  USB-security features.
+- **Use a data cable.** Charge-only USB‑C cables power the adapter but carry
+  no data.
+- **Check with the key event viewer** (see above) in Chrome before blaming
+  the app. If it shows `ControlLeft`/`ControlRight`, the adapter works.
+- **vband:** use Chrome and click into the page once so it has keyboard focus.
+- **Next CW Trainer:** run *Settings → Learn Paddle Keys* first.
 
 ## Configuration
 
